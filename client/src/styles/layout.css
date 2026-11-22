@@ -465,3 +465,51 @@ a.lesson-title:hover {
   margin-left: 8px;
 }
 
+/* Small screens */
+@media (max-width: 860px) {
+  .topbar-inner {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 14px 20px;
+  }
+
+  .mainnav {
+    order: 3;
+    width: 100%;
+    height: auto;
+    gap: 22px;
+  }
+
+  .mainnav a {
+    padding: 6px 0 8px;
+  }
+
+  .page {
+    padding: 28px 20px 60px;
+  }
+
+  .topbar-user {
+    gap: 8px;
+  }
+
+  .user-meta {
+    display: none;
+  }
+
+  .lesson-row {
+    grid-template-columns: 26px 30px minmax(0, 1fr);
+  }
+
+  .lesson-duration,
+  .lesson-action {
+    grid-column: 3;
+    text-align: left;
+  }
+
+  .progress-card,
+  .continue-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
