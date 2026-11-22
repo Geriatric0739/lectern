@@ -1,4 +1,4 @@
--- Seed data for Lectern. Every demo account uses the password: Password123
+-- Seed data for Lectern. Demo accounts: student@example.com/student, instructor@example.com/instructor, admin@example.com/admin
 -- Passwords are stored as bcrypt hashes, never as plain text.
 
 BEGIN;
@@ -12,14 +12,14 @@ INSERT INTO categories (id, name, created_at) VALUES
   (6, 'Design', '2026-11-17 09:00:00');
 
 INSERT INTO users (id, full_name, email, password_hash, role, created_at) VALUES
-  (1, 'Tamar Kiknadze', 'tamar.kiknadze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'admin', '2026-08-28 10:00:00'),
-  (2, 'Levan Chkheildze', 'levan.chkheildze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-29 10:00:00'),
+  (1, 'Admin User', 'admin@example.com', '$2b$10$S6XBM0Y3i3E8ykHdi9aNlOFVrNLrin/VzubcRFu8OBRNR.3y.yLq.', 'admin', '2026-08-28 10:00:00'),
+  (2, 'Instructor User', 'instructor@example.com', '$2b$10$YUMCYbCf1WTFf7wjzuMkaOVQyZE3cMEIECcM.RXpQFb1.NeBxX/1K', 'instructor', '2026-08-29 10:00:00'),
   (3, 'Nino Abashidze', 'nino.abashidze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-29 10:00:00'),
   (4, 'Ketevan Mdivani', 'ketevan.mdivani@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-30 10:00:00'),
   (5, 'Giorgi Tsereteli', 'giorgi.tsereteli@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-30 10:00:00'),
   (6, 'Tamar Jgenti', 'tamar.jgenti@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-31 10:00:00'),
   (7, 'Irakli Shenghelia', 'irakli.shenghelia@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'instructor', '2026-08-31 10:00:00'),
-  (8, 'Mariam Gelashvili', 'mariam.gelashvili@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'student', '2026-09-03 10:00:00'),
+  (8, 'Student User', 'student@example.com', '$2b$10$WRDf.hy8Pc/PWPSOmB22XOAsU3sZ29UzZmuYNfk..ucsRNIYXSORu', 'student', '2026-09-03 10:00:00'),
   (9, 'Nino Kapanadze', 'nino.kapanadze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'student', '2026-09-03 10:00:00'),
   (10, 'Saba Tabatadze', 'saba.tabatadze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'student', '2026-09-04 10:00:00'),
   (11, 'Elene Janelidze', 'elene.janelidze@iliauni.edu.ge', '$2b$10$/cP8kt.LhUCJv3T9HHNWUeRHb/WMS07S31H8TFK1pEJxhNB1k8rLi', 'student', '2026-09-04 10:00:00'),
