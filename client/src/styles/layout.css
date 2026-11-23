@@ -5,7 +5,7 @@
 }
 
 .topbar-inner {
-  max-width: 1220px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 28px;
   height: 64px;
@@ -17,7 +17,7 @@
 .logo {
   font-family: var(--serif);
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
   border-bottom: 3px solid var(--yellow);
   line-height: 1.7;
@@ -81,8 +81,26 @@
   margin-left: 12px;
 }
 
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-logout {
+  display: none;
+}
+
 .page {
-  max-width: 1220px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 42px 28px 80px;
 }
@@ -145,7 +163,8 @@
 
 /* Course detail */
 .detail-title {
-  font-size: 38px;
+  font-size: 44px;
+  line-height: 1.18;
   margin-bottom: 10px;
 }
 
@@ -204,7 +223,7 @@
 }
 
 .section-title {
-  font-size: 26px;
+  font-size: 24px;
 }
 
 .section-note {
@@ -234,14 +253,14 @@
 }
 
 .lesson-row.next {
-  background: #e4edee;
+  background: var(--green-tint);
 }
 
 .lesson-check {
   width: 18px;
   height: 18px;
-  border: 1px solid #b9b2a1;
-  border-radius: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
   background: var(--surface);
@@ -372,7 +391,7 @@ a.lesson-title:hover {
 }
 
 .continue-card h2 {
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 6px;
 }
 
@@ -467,34 +486,86 @@ a.lesson-title:hover {
 
 /* Small screens */
 @media (max-width: 860px) {
+  .topbar {
+    position: relative;
+  }
+
   .topbar-inner {
-    height: auto;
-    flex-wrap: wrap;
-    gap: 14px;
-    padding: 14px 20px;
+    height: 64px;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .logo {
+    font-size: 23px;
   }
 
   .mainnav {
-    order: 3;
-    width: 100%;
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 20;
     height: auto;
-    gap: 22px;
+    padding: 4px 16px 10px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .topbar.menu-open .mainnav {
+    display: flex;
   }
 
   .mainnav a {
-    padding: 6px 0 8px;
+    padding: 12px 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--line-soft);
   }
 
-  .page {
-    padding: 28px 20px 60px;
+  .mainnav a.active {
+    border-bottom-color: var(--line-soft);
+  }
+
+  .nav-logout {
+    display: block;
+    padding: 12px 0;
+    text-align: left;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
   }
 
   .topbar-user {
     gap: 8px;
   }
 
-  .user-meta {
+  .user-meta,
+  .topbar-user .btn-link {
     display: none;
+  }
+
+  .page {
+    padding: 26px 16px 60px;
+  }
+
+  .page-head .page-title {
+    font-size: 32px;
+  }
+
+  .row-between {
+    flex-wrap: wrap;
+  }
+
+  .detail-title {
+    font-size: 32px;
   }
 
   .lesson-row {
@@ -511,5 +582,117 @@ a.lesson-title:hover {
   .continue-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .toolbar .select {
+    flex: 1 1 140px;
+    width: auto;
+  }
+
+  /* Tables become cards on the student pages */
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  .page:has(.toolbar) .table-wrap,
+  .page:has(.continue-card) .table-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .page:has(.toolbar) .table,
+  .page:has(.continue-card) .table,
+  .page:has(.toolbar) .table tbody,
+  .page:has(.continue-card) .table tbody {
+    display: block;
+  }
+
+  .page:has(.toolbar) .table thead,
+  .page:has(.continue-card) .table thead {
+    display: none;
+  }
+
+  .page:has(.toolbar) .table tbody tr,
+  .page:has(.continue-card) .table tbody tr {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 0;
+    margin-bottom: 12px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .page:has(.toolbar) .table td,
+  .page:has(.continue-card) .table td {
+    display: block;
+    padding: 0;
+    border: 0;
+    white-space: normal;
+  }
+
+  .page:has(.toolbar) .table td.title-cell,
+  .page:has(.continue-card) .table td.title-cell {
+    flex: 1 1 100%;
+    max-width: none;
+    padding-right: 112px;
+    margin-bottom: 6px;
+  }
+
+  .page:has(.toolbar) .table td.title-cell strong,
+  .page:has(.toolbar) .table td.title-cell span,
+  .page:has(.continue-card) .table td.title-cell strong,
+  .page:has(.continue-card) .table td.title-cell span {
+    white-space: normal;
+  }
+
+  .page:has(.toolbar) .table td.title-cell span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .page:has(.toolbar) .table td:nth-child(3) {
+    display: none;
+  }
+
+  .page:has(.toolbar) .table td:nth-child(2),
+  .page:has(.toolbar) .table td:nth-child(5) {
+    order: 1;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .page:has(.toolbar) .table td:nth-child(2)::after,
+  .page:has(.toolbar) .table td:nth-child(5)::after {
+    content: "·";
+    margin: 0 7px;
+    color: var(--line-strong);
+  }
+
+  .page:has(.toolbar) .table td:nth-child(4) {
+    order: 2;
+  }
+
+  .page:has(.toolbar) .table td:nth-child(6),
+  .page:has(.continue-card) .table td:nth-child(3) {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+  }
+
+  .page:has(.continue-card) .table td:nth-child(2) {
+    flex: 1 1 100%;
+    margin-bottom: 6px;
+  }
+
+  .page:has(.continue-card) .table td:nth-child(4) {
+    flex: 1 1 100%;
+    margin-top: 8px;
+    text-align: right;
   }
 }

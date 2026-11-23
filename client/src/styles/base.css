@@ -1,21 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
 :root {
   --bg: #f6f2e9;
   --surface: #fffcf5;
-  --ink: #1b2420;
+  --ink: #182420;
+  --ink-2: #46504b;
   --muted: #66706b;
   --line: #ddd6c6;
   --line-soft: #edeae1;
+  --line-strong: #bdb5a2;
   --green: #1f5a4a;
-  --green-dark: #1b4f40;
-  --green-tint: #e6f0da;
+  --green-dark: #174437;
+  --green-tint: #e1ece6;
+  --success-tint: #e6f0da;
+  --success-line: #bcd6ab;
   --green-text: #3c7a1e;
   --yellow: #f3d55b;
   --yellow-tint: #fbf1c4;
   --danger: #b3261e;
   --danger-tint: #f7e4e1;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --radius: 6px;
+  --radius-sm: 4px;
 }
 
 *,
@@ -36,8 +43,13 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
 }
 
 h1,
@@ -46,7 +58,7 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--serif);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
@@ -75,12 +87,13 @@ button {
 }
 
 .page-title {
-  font-size: 34px;
+  font-size: 32px;
+  line-height: 1.25;
   margin-bottom: 6px;
 }
 
 .page-sub {
-  color: var(--muted);
+  color: var(--ink-2);
   font-size: 15px;
 }
 
@@ -100,18 +113,57 @@ button {
 
 .small {
   font-size: 13px;
+  line-height: 1.55;
 }
 
 .error-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+  background: var(--danger-tint);
   color: var(--danger);
   font-size: 13px;
-  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.error-text::before {
+  content: "!";
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .success-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--success-line);
+  border-radius: var(--radius-sm);
+  background: var(--success-tint);
   color: var(--green-text);
   font-size: 13px;
-  margin-top: 8px;
+  line-height: 1.5;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(31, 90, 74, 0.45);
+  outline-offset: 2px;
 }
 
 /* ---------- Cards and layout helpers ---------- */
@@ -179,11 +231,13 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 18px;
+  min-height: 40px;
+  padding: 0 16px;
   font-size: 14px;
-  font-weight: 550;
+  font-weight: 500;
+  line-height: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   white-space: nowrap;
   text-decoration: none;
@@ -209,7 +263,7 @@ button {
 
 .btn-outline {
   background: var(--surface);
-  border-color: #bdb5a2;
+  border-color: var(--line-strong);
   color: var(--ink);
 }
 
@@ -229,7 +283,8 @@ button {
 }
 
 .btn-sm {
-  padding: 7px 12px;
+  min-height: 32px;
+  padding: 0 11px;
   font-size: 13px;
 }
 
@@ -253,8 +308,8 @@ button {
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid #bdb5a2;
-  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
   background: var(--surface);
   cursor: pointer;
   color: var(--ink);
@@ -292,20 +347,22 @@ button {
 }
 
 .label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  line-height: 20px;
 }
 
 .input,
 .select,
 .textarea {
   width: 100%;
-  padding: 10px 12px;
+  height: 44px;
+  padding: 0 12px;
   font: inherit;
   color: var(--ink);
   background: var(--surface);
-  border: 1px solid #bdb5a2;
-  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
 }
 
 .input::placeholder,
@@ -322,13 +379,16 @@ button {
 }
 
 .textarea {
+  height: auto;
   min-height: 110px;
+  padding: 10px 12px;
   resize: vertical;
   line-height: 1.5;
 }
 
 .hint {
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.55;
   color: var(--muted);
 }
 
@@ -346,8 +406,8 @@ button {
   gap: 12px;
   align-items: flex-start;
   padding: 14px 16px;
-  border: 1px solid #bdb5a2;
-  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
   background: var(--surface);
   cursor: pointer;
 }
@@ -358,7 +418,7 @@ button {
 
 .radio-card.selected {
   border-color: var(--green);
-  background: #edf3f0;
+  background: var(--green-tint);
 }
 
 .radio-card input {
@@ -383,7 +443,7 @@ button {
 .table-wrap {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow-x: auto;
   background: var(--surface);
 }
 
@@ -394,7 +454,7 @@ button {
 
 .table th {
   text-align: left;
-  padding: 11px 20px;
+  padding: 11px 14px;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.07em;
@@ -405,7 +465,7 @@ button {
 }
 
 .table td {
-  padding: 15px 20px;
+  padding: 15px 14px;
   border-top: 1px solid var(--line-soft);
   vertical-align: middle;
 }
@@ -415,7 +475,7 @@ button {
 }
 
 .table tbody tr.highlight td {
-  background: #e4edee;
+  background: var(--green-tint);
 }
 
 .table .title-cell {
@@ -470,9 +530,10 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 9px;
-  font-size: 13px;
-  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
@@ -484,7 +545,7 @@ button {
 }
 
 .badge-success {
-  background: var(--green-tint);
+  background: var(--success-tint);
   color: var(--green-text);
 }
 
@@ -495,11 +556,11 @@ button {
 
 .badge-neutral {
   background: #efede4;
-  color: #4c544f;
+  color: var(--ink-2);
 }
 
 .badge-info {
-  background: #e4edee;
+  background: var(--green-tint);
   color: var(--green);
 }
 
@@ -509,9 +570,9 @@ button {
 }
 
 .progress {
-  height: 8px;
-  border-radius: 4px;
-  background: #e7e1ce;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
   overflow: hidden;
   min-width: 120px;
 }
@@ -519,7 +580,7 @@ button {
 .progress-fill {
   height: 100%;
   background: var(--green);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .progress-row {
@@ -547,10 +608,10 @@ button {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #e1ece6;
+  background: var(--green-tint);
   color: #30594d;
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.02em;
   flex: none;
 }
@@ -592,7 +653,6 @@ button {
 }
 
 .table .icon-cell {
-  width: 118px;
   white-space: nowrap;
 }
 
@@ -628,7 +688,7 @@ button {
 .auth-logo {
   font-family: var(--serif);
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 600;
   color: #fdfbf2;
   border-bottom: 3px solid var(--yellow);
   align-self: flex-start;
@@ -704,7 +764,8 @@ button {
 }
 
 .auth-form h1 {
-  font-size: 34px;
+  font-size: 32px;
+  line-height: 1.25;
   margin-bottom: 8px;
 }
 
@@ -754,5 +815,29 @@ button {
 
   .auth-panel {
     display: none;
+  }
+
+  .auth-main {
+    position: relative;
+    align-items: flex-start;
+    padding: 24px 16px 48px;
+  }
+
+  .auth-form {
+    max-width: none;
+    padding-top: 78px;
+  }
+
+  .auth-form::before {
+    content: "Lectern";
+    position: absolute;
+    top: 24px;
+    left: 16px;
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    border-bottom: 3px solid var(--yellow);
   }
 }

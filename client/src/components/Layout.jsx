@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext.jsx'
 import Avatar from './Avatar.jsx'
+import Icon from './Icon.jsx'
 
 const NAV = {
   student: [
@@ -21,26 +23,31 @@ const NAV = {
 export default function Layout({ children }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
   const links = NAV[user?.role] ?? []
 
   async function handleLogout() {
+    setOpen(false)
     await logout()
     navigate('/login')
   }
 
   return (
     <>
-      <header className="topbar">
+      <header className={open ? 'topbar menu-open' : 'topbar'}>
         <div className="topbar-inner">
-          <Link to="/courses" className="logo">
+          <Link to="/courses" className="logo" onClick={() => setOpen(false)}>
             Lectern
           </Link>
-          <nav className="mainnav">
+          <nav className="mainnav" id="mainnav">
             {links.map(([to, label]) => (
-              <NavLink key={to} to={to}>
+              <NavLink key={to} to={to} onClick={() => setOpen(false)}>
                 {label}
               </NavLink>
             ))}
+            <button type="button" className="nav-logout btn-link" onClick={handleLogout}>
+              Log out
+            </button>
           </nav>
           {user && (
             <div className="topbar-user">
@@ -54,6 +61,16 @@ export default function Layout({ children }) {
               </button>
             </div>
           )}
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mainnav"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <Icon name={open ? 'close' : 'menu'} size={20} />
+          </button>
         </div>
       </header>
       <main className="page">{children}</main>

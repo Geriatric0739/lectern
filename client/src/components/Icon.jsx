@@ -14,6 +14,8 @@ const paths = {
   ),
   check: <path d="m3 8.4 3.1 3.1L13 4.8" />,
   chevronDown: <path d="m3.5 6 4.5 4.5L12.5 6" />,
+  menu: <path d="M2.5 4h11M2.5 8h11M2.5 12h11" />,
+  close: <path d="m3.5 3.5 9 9m0-9-9 9" />,
 }
 
 export default function Icon({ name, size = 16, strokeWidth = 1.6 }) {
